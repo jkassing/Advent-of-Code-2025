@@ -13,23 +13,21 @@ class Solver(object):
 
     def check_range(self, interval: str):
         for number in range(int(interval[0]), int(interval[1]) + 1):
-            stringNumber = str(number)
-            length = len(stringNumber)
-            if (length % 2 != 0):
-                continue
-            left = stringNumber[:length // 2]
-            right = stringNumber[length // 2:]
-            if left == right:
+            s = str(number)
+            length = len(s)
+            half = length // 2
+            if length % 2 == 0 and s[:half] == s[half:]:
                 self.invalid_sum += number
 
     def check_range2(self, interval: str):
         for number in range(int(interval[0]), int(interval[1]) + 1):
-            stringNumber = str(number)
-            length = len(stringNumber)
+            s = str(number)
+            length = len(s)
             for k in range(1, (length // 2) + 1):
                 if (length % k != 0):
                     continue
-                if stringNumber == stringNumber[:k] * (length // k):
+                # check if substring repeated k times is the og string
+                if s == s[:k] * (length // k):
                     self.invalid_sum += number
                     break
 
