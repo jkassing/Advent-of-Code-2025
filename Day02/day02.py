@@ -6,9 +6,12 @@ class Solver(object):
         self.invalid_sum = 0
 
     
-    def solve(self):
+    def solve(self, part):
         for interval in self.inputs:
-            self.check_range2(interval.split('-'))
+            if part == 2:
+                self.check_range2(interval.split('-'))
+            else:   
+                self.check_range(interval.split('-'))
         return self.invalid_sum
 
     def check_range(self, interval: str):
@@ -33,4 +36,4 @@ class Solver(object):
 
 
 solver = Solver("Day02/input.txt")
-print(solver.solve())
+print(solver.solve(part=2))
